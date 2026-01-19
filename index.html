@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="dark" lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Thomi Febriyan Portfolio | Mobile & Electrical Expertise</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "slate-custom": "#192633",
+                        "border-custom": "#324d67",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px",
+                    },
+                },
+            },
+        }
+    </script>
+
+    <!-- Global styles -->
+    <style>
+        .circuit-bg {
+            background-image: radial-gradient(circle at 2px 2px,
+                    #137fec15 1px,
+                    transparent 0);
+            background-size: 24px 24px;
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%,
+                    rgba(19, 127, 236, 0.1) 0%,
+                    rgba(16, 25, 34, 0) 70%);
+        }
+    </style>
+</head>
+
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white transition-colors duration-300">
+    <!-- HEADER (NAVBAR) -->
+    <header id="header" class="sticky top-0 z-50"></header>
+
+    <div class="relative flex min-h-screen flex-col overflow-x-hidden">
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1">
+            <section id="about"></section>
+            <section id="projects"></section>
+            <section id="skills"></section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer id="footer"></footer>
+
+        <!-- LOADER SCRIPT -->
+        <script>
+            const sections = {
+                header: "sections/header.html",
+                projects: "sections/projects.html",
+                skills: "sections/skills.html",
+                about: "sections/about.html",
+                footer: "sections/footer.html",
+            }
+
+            // DATA PROJECTS
+            const projects = [
+                {
+                    title: "Fintech App",
+                    subtitle: "Banking reimagined for Gen Z.",
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW-r1NImVu_cG6PiBWcCqKv9Lwm3gtWjhHTEp4f8rz7rU99bM-F-sjWFUIHVw_g8QCBBJeIbNZY6-Bqz5C1fYEU2VhpRpo8Ul1YTME8xzB3MZ4argfL5608nimcvaLLToOm_QhTLQibDGo-63iJFqNUYzgQMPidpxPNrkFC2L2LvPzp8Lk2H0raYxhOZZTUjpCJLo0feb-emkFFPsYirWEdQRD0vF-zkwykP9-1BFfBhR3x6pLd3c9f73VzncMVJfB797d3aH2KA",
+                },
+                {
+                    title: "Fitness Tracker",
+                    subtitle: "Health metrics in your pocket.",
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCeQidddfO5702V_L9lwNsUypNWYVcfIK4P0jD4SMLm6dj0HtlamAMHaR8M0TFQmrKy_L-oKrsTOKG7ZKPP5AKl979kj9IItKIxYIA9TxJxkEnnasSQTiP3jENy9gm0yQha2oM9FBwfYsLM62Bthb0dZLw9x8aSfTuUw-z2OciyW43az6q0GYj4vcOJe05U2bfyMHizzCf8iPdQkBQqNphxkSTtpDbeogC1QNqksuW9LJHih0gaZ_iKw-DcRvkuufF0R0fiA60XRw",
+                },
+                {
+                    title: "E-commerce UI",
+                    subtitle: "Seamless shopping experience.",
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBaXmcXqZUxTDmfZYD9MHjl_AfuBlSR7w5LUgqAEigI9aM4rgYyWXgfgo3bHos2ccjnTeakE2ymi4O951cokIhqnqBXKS8yAeO08ixePcvxw5urZ6_A4knE9gSM6X8wrAzObBOG7cqbfGWIU4qFn-1EhpvMKXwjj5qQnNm14OEklfmgy98uZqSex13DUC1XBBaOL-hPB1bGjZgjxShyja1v0GKwcf6OH65g-q3TjCvhI9AMEvd2_U8HQVxK818xiXECvye796ED4Q",
+                }, {
+                    title: "E-commerce UI",
+                    subtitle: "Seamless shopping experience.",
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBaXmcXqZUxTDmfZYD9MHjl_AfuBlSR7w5LUgqAEigI9aM4rgYyWXgfgo3bHos2ccjnTeakE2ymi4O951cokIhqnqBXKS8yAeO08ixePcvxw5urZ6_A4knE9gSM6X8wrAzObBOG7cqbfGWIU4qFn-1EhpvMKXwjj5qQnNm14OEklfmgy98uZqSex13DUC1XBBaOL-hPB1bGjZgjxShyja1v0GKwcf6OH65g-q3TjCvhI9AMEvd2_U8HQVxK818xiXECvye796ED4Q",
+                }, {
+                    title: "E-commerce UI",
+                    subtitle: "Seamless shopping experience.",
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBaXmcXqZUxTDmfZYD9MHjl_AfuBlSR7w5LUgqAEigI9aM4rgYyWXgfgo3bHos2ccjnTeakE2ymi4O951cokIhqnqBXKS8yAeO08ixePcvxw5urZ6_A4knE9gSM6X8wrAzObBOG7cqbfGWIU4qFn-1EhpvMKXwjj5qQnNm14OEklfmgy98uZqSex13DUC1XBBaOL-hPB1bGjZgjxShyja1v0GKwcf6OH65g-q3TjCvhI9AMEvd2_U8HQVxK818xiXECvye796ED4Q",
+                },
+            ]
+
+            function renderProjects() {
+                const grid = document.getElementById("projects-grid")
+                if (!grid) return
+
+                grid.innerHTML = ""
+
+                projects.forEach((project) => {
+                    grid.innerHTML += `
+        <div class="group flex flex-col gap-4">
+          <div
+            class="aspect-[4/3] w-full bg-center bg-cover rounded-xl overflow-hidden relative"
+            style="background-image: url('${project.image}')">
+            <div
+              class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+            >
+              <span class="text-white font-bold border-2 border-white px-6 py-2 rounded-full">
+                View Case Study
+              </span>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-white text-xl font-bold mb-1">${project.title}</h3>
+            <p class="text-[#92adc9] text-sm">${project.subtitle}</p>
+          </div>
+        </div>
+      `
+                })
+            }
+
+            // LOAD SECTIONS + HOOK PROJECTS
+            Object.entries(sections).forEach(([id, file]) => {
+                fetch(file)
+                    .then((res) => res.text())
+                    .then((html) => {
+                        const el = document.getElementById(id)
+                        if (!el) return
+
+                        el.innerHTML = html
+
+                        // JIKA projects.html SUDAH MASUK → render
+                        if (id === "projects") {
+                            renderProjects()
+                        }
+                    })
+                    .catch((err) => console.error("Failed to load:", file, err))
+            })
+        </script>
+
+</body>
+
+</html>
