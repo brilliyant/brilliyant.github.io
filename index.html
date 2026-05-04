@@ -1,180 +1,276 @@
 <!DOCTYPE html>
-<html class="dark" lang="id">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" href="/favicon.ico">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
 
-    <title>Thomi Febriyan Portfolio | Mobile & Electrical Expertise</title>
+    <title>Thomi Febriyan Portfolio | Flutter Developer</title>
 
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-    <!-- Material Symbols -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet" />
-
-    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        primary: "#137fec",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101922",
-                        "slate-custom": "#192633",
-                        "border-custom": "#324d67",
+                        paper: "#eeeff0",
+                        ink: "#111b37",
+                        midnight: "#000f37",
+                        muted: "#667790",
+                        line: "#b6bcc7",
                     },
                     fontFamily: {
-                        display: ["Inter", "sans-serif"],
+                        display: ["Poppins", "sans-serif"],
                     },
-                    borderRadius: {
-                        DEFAULT: "0.25rem",
-                        lg: "0.5rem",
-                        xl: "0.75rem",
-                        full: "9999px",
+                    boxShadow: {
+                        soft: "0 15px 40px rgba(17, 27, 55, 0.1)",
                     },
                 },
             },
         }
     </script>
 
-    <!-- Global styles -->
     <style>
-        .circuit-bg {
-            background-image: radial-gradient(circle at 2px 2px,
-                    #137fec15 1px,
-                    transparent 0);
-            background-size: 24px 24px;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .hero-gradient {
-            background: radial-gradient(circle at 50% 50%,
-                    rgba(19, 127, 236, 0.1) 0%,
-                    rgba(16, 25, 34, 0) 70%);
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .fade-up-delay-1 {
+            animation-delay: 0.15s;
+        }
+
+        .fade-up-delay-2 {
+            animation-delay: 0.25s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 
+<body class="bg-paper font-display text-ink">
+    <header id="header"></header>
 
-<body
-    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white transition-colors duration-300">
-    <!-- HEADER (NAVBAR) -->
-    <header id="header" class="sticky top-0 z-50"></header>
+    <main>
+        <section id="hero"></section>
+        <section id="about"></section>
+        <section id="skills"></section>
+        <section id="projects"></section>
+    </main>
 
-    <div class="relative flex min-h-screen flex-col overflow-x-hidden">
+    <footer id="footer"></footer>
 
-        <!-- MAIN CONTENT -->
-        <main class="flex-1">
-            <section id="about"></section>
-            <section id="projects"></section>
-            <section id="skills"></section>
-        </main>
+    <script>
+        const sectionFiles = {
+            header: "sections/header.html",
+            hero: "sections/hero.html",
+            about: "sections/about.html",
+            skills: "sections/skills.html",
+            projects: "sections/projects.html",
+            footer: "sections/footer.html",
+        }
 
-        <!-- FOOTER -->
-        <footer id="footer"></footer>
+        const projectItems = [
+            {
+                title: "Automatic Curtains",
+                category: "arduino",
+                year: "2025",
+                size: "regular",
+                image:
+                    "https://lh3.googleusercontent.com/aida-public/AB6AXuAnT3axmNDeXB0veaUQneAj9aZ7La9t4mXERLCBNrSoqgtzQpaO9pR3tzHytg-i-DpEfGLiUk2qCh5kn_kF1J5_KD8_FSLcwyf_73DIL1afyw4j-Qx94_QM_nmkiTXxb_mAWa86hNfR9x5e463gcoGDtm17gBYgiVMRAs3Q7lCRCVZttNv2TzWSfkJELdfknjIspjFrXSdDvwAoacqSb3IplWw4-wDWC9uiaIaSbpqmyX3ddK_zolqZmu7Ht2VghdtBalsZX4wW_A",
+            },
+            {
+                title: "PID Line Tracer",
+                category: "arduino",
+                year: "2025",
+                size: "regular",
+                image:
+                    "https://lh3.googleusercontent.com/aida-public/AB6AXuBaXmcXqZUxTDmfZYD9MHjl_AfuBlSR7w5LUgqAEigI9aM4rgYyWXgfgo3bHos2ccjnTeakE2ymi4O951cokIhqnqBXKS8yAeO08ixePcvxw5urZ6_A4knE9gSM6X8wrAzObBOG7cqbfGWIU4qFn-1EhpvMKXwjj5qQnNm14OEklfmgy98uZqSex13DUC1XBBaOL-hPB1bGjZgjxShyja1v0GKwcf6OH65g-q3TjCvhI9AMEvd2_U8HQVxK818xiXECvye796ED4Q",
+            },
+            {
+                title: "Smart Greenhouse",
+                category: "web-app",
+                year: "2025",
+                size: "regular",
+                image:
+                    "https://lh3.googleusercontent.com/aida-public/AB6AXuCeQidddfO5702V_L9lwNsUypNWYVcfIK4P0jD4SMLm6dj0HtlamAMHaR8M0TFQmrKy_L-oKrsTOKG7ZKPP5AKl979kj9IItKIxYIA9TxJxkEnnasSQTiP3jENy9gm0yQha2oM9FBwfYsLM62Bthb0dZLw9x8aSfTuUw-z2OciyW43az6q0GYj4vcOJe05U2bfyMHizzCf8iPdQkBQqNphxkSTtpDbeogC1QNqksuW9LJHih0gaZ_iKw-DcRvkuufF0R0fiA60XRw",
+            },
+            {
+                title: "Attendance Mobile App",
+                category: "mobile",
+                year: "2024",
+                size: "regular",
+                image:
+                    "https://cdn.dribbble.com/userupload/15576148/file/original-9d5bf2f635a6c15ee10c8f5ee0639fbe.jpg?resize=1024x728&vertical=center",
+            },
+            {
+                title: "Automatic Curtains",
+                category: "arduino",
+                year: "2025",
+                size: "wide",
+                image:
+                    "https://lh3.googleusercontent.com/aida-public/AB6AXuBaXmcXqZUxTDmfZYD9MHjl_AfuBlSR7w5LUgqAEigI9aM4rgYyWXgfgo3bHos2ccjnTeakE2ymi4O951cokIhqnqBXKS8yAeO08ixePcvxw5urZ6_A4knE9gSM6X8wrAzObBOG7cqbfGWIU4qFn-1EhpvMKXwjj5qQnNm14OEklfmgy98uZqSex13DUC1XBBaOL-hPB1bGjZgjxShyja1v0GKwcf6OH65g-q3TjCvhI9AMEvd2_U8HQVxK818xiXECvye796ED4Q",
+            },
+        ]
 
-        <!-- LOADER SCRIPT -->
-        <script>
-            const sections = {
-                header: "sections/header.html",
-                projects: "sections/projects.html",
-                skills: "sections/skills.html",
-                about: "sections/about.html",
-                footer: "sections/footer.html",
-            }
+        function initMobileNav() {
+            const toggleButton = document.getElementById("mobile-menu-toggle")
+            const menu = document.getElementById("mobile-menu")
+            if (!toggleButton || !menu) return
 
-            // DATA PROJECTS
-            const projects = [
-                {
-                    title: "Webino",
-                    subtitle: "Seminar - Webinar information.",
-                    image: "https://cdn.dribbble.com/userupload/15576148/file/original-9d5bf2f635a6c15ee10c8f5ee0639fbe.jpg?resize=1024x728&vertical=center",
-                },
-                // {
-                //     title: "Fitness Tracker",
-                //     subtitle: "Health metrics in your pocket.",
-                //     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCeQidddfO5702V_L9lwNsUypNWYVcfIK4P0jD4SMLm6dj0HtlamAMHaR8M0TFQmrKy_L-oKrsTOKG7ZKPP5AKl979kj9IItKIxYIA9TxJxkEnnasSQTiP3jENy9gm0yQha2oM9FBwfYsLM62Bthb0dZLw9x8aSfTuUw-z2OciyW43az6q0GYj4vcOJe05U2bfyMHizzCf8iPdQkBQqNphxkSTtpDbeogC1QNqksuW9LJHih0gaZ_iKw-DcRvkuufF0R0fiA60XRw",
-                // },
-                // {
-                //     title: "E-commerce UI",
-                //     subtitle: "Seamless shopping experience.",
-                //     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBaXmcXqZUxTDmfZYD9MHjl_AfuBlSR7w5LUgqAEigI9aM4rgYyWXgfgo3bHos2ccjnTeakE2ymi4O951cokIhqnqBXKS8yAeO08ixePcvxw5urZ6_A4knE9gSM6X8wrAzObBOG7cqbfGWIU4qFn-1EhpvMKXwjj5qQnNm14OEklfmgy98uZqSex13DUC1XBBaOL-hPB1bGjZgjxShyja1v0GKwcf6OH65g-q3TjCvhI9AMEvd2_U8HQVxK818xiXECvye796ED4Q",
-                // }, {
-                //     title: "E-commerce UI",
-                //     subtitle: "Seamless shopping experience.",
-                //     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBaXmcXqZUxTDmfZYD9MHjl_AfuBlSR7w5LUgqAEigI9aM4rgYyWXgfgo3bHos2ccjnTeakE2ymi4O951cokIhqnqBXKS8yAeO08ixePcvxw5urZ6_A4knE9gSM6X8wrAzObBOG7cqbfGWIU4qFn-1EhpvMKXwjj5qQnNm14OEklfmgy98uZqSex13DUC1XBBaOL-hPB1bGjZgjxShyja1v0GKwcf6OH65g-q3TjCvhI9AMEvd2_U8HQVxK818xiXECvye796ED4Q",
-                // }, {
-                //     title: "E-commerce UI",
-                //     subtitle: "Seamless shopping experience.",
-                //     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBaXmcXqZUxTDmfZYD9MHjl_AfuBlSR7w5LUgqAEigI9aM4rgYyWXgfgo3bHos2ccjnTeakE2ymi4O951cokIhqnqBXKS8yAeO08ixePcvxw5urZ6_A4knE9gSM6X8wrAzObBOG7cqbfGWIU4qFn-1EhpvMKXwjj5qQnNm14OEklfmgy98uZqSex13DUC1XBBaOL-hPB1bGjZgjxShyja1v0GKwcf6OH65g-q3TjCvhI9AMEvd2_U8HQVxK818xiXECvye796ED4Q",
-                // },
-            ]
+            toggleButton.addEventListener("click", () => {
+                menu.classList.toggle("hidden")
+            })
 
-            function renderProjects() {
-                const grid = document.getElementById("projects-grid")
-                if (!grid) return
+            menu.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", () => {
+                    menu.classList.add("hidden")
+                })
+            })
+        }
 
-                grid.innerHTML = ""
+        function animateCounters() {
+            const counters = document.querySelectorAll(".stat-number")
+            if (!counters.length) return
 
-                projects.forEach((project) => {
-                    grid.innerHTML += `
-        <div class="group flex flex-col gap-4">
-          <div
-            class="aspect-[4/3] w-full bg-center bg-cover rounded-xl overflow-hidden relative"
-            style="background-image: url('${project.image}')">
-            <div
-              class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
-            >
-              <span class="text-white font-bold border-2 border-white px-6 py-2 rounded-full">
-                View Case Study
-              </span>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-white text-xl font-bold mb-1">${project.title}</h3>
-            <p class="text-[#92adc9] text-sm">${project.subtitle}</p>
-          </div>
-        </div>
-      `
+            counters.forEach((counter) => {
+                const target = Number(counter.dataset.target)
+                const duration = 1400
+                const start = performance.now()
+
+                function tick(now) {
+                    const progress = Math.min((now - start) / duration, 1)
+                    const eased = 1 - Math.pow(1 - progress, 3)
+                    const value = Math.floor(eased * target)
+
+                    counter.textContent = value
+                    if (progress < 1) {
+                        requestAnimationFrame(tick)
+                    } else {
+                        counter.textContent = target
+                    }
+                }
+
+                requestAnimationFrame(tick)
+            })
+        }
+
+        function createProjectCard(project) {
+            const article = document.createElement("article")
+            const isWide = project.size === "wide"
+
+            article.className = [
+                "group relative overflow-hidden rounded-none border border-white/15 bg-white/5",
+                isWide ? "md:col-span-2" : "",
+            ].join(" ")
+
+            const ratioClass = isWide ? "aspect-[2.4/1]" : "aspect-[4/3]"
+            const categoryLabel = project.category.replace("-", " ")
+
+            article.innerHTML = `
+                <div class="${ratioClass} w-full overflow-hidden">
+                    <img
+                        src="${project.image}"
+                        alt="${project.title} preview"
+                        class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    />
+                </div>
+                <div class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-5 md:p-6">
+                    <p class="text-sm text-white/80">${categoryLabel} | ${project.year}</p>
+                    <h3 class="mt-2 text-xl font-medium text-white md:text-3xl">${project.title}</h3>
+                </div>
+            `
+
+            return article
+        }
+
+        function initProjects() {
+            const grid = document.getElementById("projects-grid")
+            const filters = document.getElementById("project-filters")
+            if (!grid || !filters) return
+
+            let currentFilter = "all"
+
+            function setActiveButton() {
+                filters.querySelectorAll("button").forEach((button) => {
+                    const isActive = button.dataset.filter === currentFilter
+                    button.className = [
+                        "rounded-full px-5 py-2 text-sm font-semibold transition md:text-base",
+                        isActive
+                            ? "bg-white text-ink"
+                            : "text-white/45 hover:text-white",
+                    ].join(" ")
                 })
             }
 
-            // LOAD SECTIONS + HOOK PROJECTS
-            Object.entries(sections).forEach(([id, file]) => {
-                fetch(file)
-                    .then((res) => res.text())
-                    .then((html) => {
-                        const el = document.getElementById(id)
-                        if (!el) return
+            function render() {
+                const visibleItems =
+                    currentFilter === "all"
+                        ? projectItems
+                        : projectItems.filter((item) => item.category === currentFilter)
 
-                        el.innerHTML = html
+                grid.innerHTML = ""
+                visibleItems.forEach((item) => {
+                    grid.appendChild(createProjectCard(item))
+                })
+            }
 
-                        // JIKA projects.html SUDAH MASUK → render
-                        if (id === "projects") {
-                            renderProjects()
-                        }
-                    })
-                    .catch((err) => console.error("Failed to load:", file, err))
+            filters.addEventListener("click", (event) => {
+                const button = event.target.closest("button")
+                if (!button) return
+                currentFilter = button.dataset.filter
+                setActiveButton()
+                render()
             })
-        </script>
 
+            setActiveButton()
+            render()
+        }
+
+        async function loadSections() {
+            const loadTasks = Object.entries(sectionFiles).map(async ([id, file]) => {
+                const response = await fetch(file)
+                const html = await response.text()
+                const mount = document.getElementById(id)
+                if (mount) mount.innerHTML = html
+            })
+
+            await Promise.all(loadTasks)
+            initMobileNav()
+            initProjects()
+            animateCounters()
+        }
+
+        loadSections().catch((error) => {
+            console.error("Failed to load sections", error)
+        })
+    </script>
 </body>
 
 </html>
+

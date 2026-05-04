@@ -1,113 +1,16 @@
-<section class="bg-background-light dark:bg-background-dark py-24 px-8 md:px-20">
-  <div class="max-w-6xl mx-auto">
+<div class="bg-midnight py-14 md:py-20">
+    <div class="mx-auto w-full max-w-[1200px] px-5 lg:px-10">
+        <h2 class="text-center text-4xl font-bold text-white md:text-6xl">My Works</h2>
 
-    <!-- Section Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-      <div class="flex flex-col gap-4">
-        <h2 class="text-white text-4xl font-bold">Featured Work</h2>
-        <p class="text-[#92adc9] text-lg max-w-xl">
-          A selection of recent mobile projects focusing on performance,
-          reliability, and clean architecture.
-        </p>
-      </div>
+        <div class="mt-9 flex justify-center">
+            <div id="project-filters" class="inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-white/50 p-1">
+                <button data-filter="all" class="rounded-full bg-white px-6 py-2 text-base font-semibold text-ink md:text-lg">All Works</button>
+                <button data-filter="arduino" class="rounded-full px-6 py-2 text-base font-semibold text-white/45 hover:text-white md:text-lg">Arduino</button>
+                <button data-filter="web-app" class="rounded-full px-6 py-2 text-base font-semibold text-white/45 hover:text-white md:text-lg">Web App</button>
+                <button data-filter="mobile" class="rounded-full px-6 py-2 text-base font-semibold text-white/45 hover:text-white md:text-lg">Mobile</button>
+            </div>
+        </div>
 
-      <button
-        class="bg-primary/10 text-primary border border-primary/20 h-12 px-6 rounded-lg font-bold hover:bg-primary/20 transition-all flex items-center gap-2"
-      >
-        View All Projects
-        <span class="material-symbols-outlined text-sm">arrow_forward</span>
-      </button>
+        <div id="projects-grid" class="mt-12 grid gap-6 md:grid-cols-2"></div>
     </div>
-
-    <!-- GRID (kosong, akan diisi JS) -->
-    <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
-
-  </div>
-</section>
-
-<!-- <section class="bg-background-light dark:bg-background-dark py-24 px-8 md:px-20">
-    <div class="max-w-6xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-            <div class="flex flex-col gap-4">
-                <h2 class="text-white text-4xl font-bold">Featured Work</h2>
-                <p class="text-[#92adc9] text-lg max-w-xl">A selection of recent mobile design projects focusing
-                    on UX and high-performance motion design.</p>
-            </div>
-            <button
-                class="bg-primary/10 text-primary border border-primary/20 h-12 px-6 rounded-lg font-bold hover:bg-primary/20 transition-all flex items-center gap-2">
-                View All Projects <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </button>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            Project Card 1
-            <div class="group flex flex-col gap-4">
-                <div class="aspect-[4/3] w-full bg-center bg-cover rounded-xl overflow-hidden relative"
-                    data-alt="Fintech mobile application dashboard with dark mode UI"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDW-r1NImVu_cG6PiBWcCqKv9Lwm3gtWjhHTEp4f8rz7rU99bM-F-sjWFUIHVw_g8QCBBJeIbNZY6-Bqz5C1fYEU2VhpRpo8Ul1YTME8xzB3MZ4argfL5608nimcvaLLToOm_QhTLQibDGo-63iJFqNUYzgQMPidpxPNrkFC2L2LvPzp8Lk2H0raYxhOZZTUjpCJLo0feb-emkFFPsYirWEdQRD0vF-zkwykP9-1BFfBhR3x6pLd3c9f73VzncMVJfB797d3aH2KA");'>
-                    <div
-                        class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span class="text-white font-bold border-2 border-white px-6 py-2 rounded-full">View
-                            Case Study</span>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-white text-xl font-bold mb-1">Fintech App</h3>
-                    <p class="text-[#92adc9] text-sm">Banking reimagined for Gen Z.</p>
-                </div>
-            </div>
-            Project Card 2
-            <div class="group flex flex-col gap-4">
-                <div class="aspect-[4/3] w-full bg-center bg-cover rounded-xl overflow-hidden relative"
-                    data-alt="Fitness tracking app showing workout progress and health stats"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCeQidddfO5702V_L9lwNsUypNWYVcfIK4P0jD4SMLm6dj0HtlamAMHaR8M0TFQmrKy_L-oKrsTOKG7ZKPP5AKl979kj9IItKIxYIA9TxJxkEnnasSQTiP3jENy9gm0yQha2oM9FBwfYsLM62Bthb0dZLw9x8aSfTuUw-z2OciyW43az6q0GYj4vcOJe05U2bfyMHizzCf8iPdQkBQqNphxkSTtpDbeogC1QNqksuW9LJHih0gaZ_iKw-DcRvkuufF0R0fiA60XRw");'>
-                    <div
-                        class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span class="text-white font-bold border-2 border-white px-6 py-2 rounded-full">View
-                            Case Study</span>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-white text-xl font-bold mb-1">Fitness Tracker</h3>
-                    <p class="text-[#92adc9] text-sm">Health metrics in your pocket.</p>
-                </div>
-            </div>
-            Project Card 3
-            <div class="group flex flex-col gap-4">
-                <div class="aspect-[4/3] w-full bg-center bg-cover rounded-xl overflow-hidden relative"
-                    data-alt="E-commerce shopping application with clean minimalist design"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBaXmcXqZUxTDmfZYD9MHjl_AfuBlSR7w5LUgqAEigI9aM4rgYyWXgfgo3bHos2ccjnTeakE2ymi4O951cokIhqnqBXKS8yAeO08ixePcvxw5urZ6_A4knE9gSM6X8wrAzObBOG7cqbfGWIU4qFn-1EhpvMKXwjj5qQnNm14OEklfmgy98uZqSex13DUC1XBBaOL-hPB1bGjZgjxShyja1v0GKwcf6OH65g-q3TjCvhI9AMEvd2_U8HQVxK818xiXECvye796ED4Q");'>
-                    <div
-                        class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span class="text-white font-bold border-2 border-white px-6 py-2 rounded-full">View
-                            Case Study</span>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-white text-xl font-bold mb-1">E-commerce UI</h3>
-                    <p class="text-[#92adc9] text-sm">Seamless shopping experience.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!-- <section class="max-w-5xl mx-auto px-6 py-10">
-    <h2 class="text-xl font-semibold text-white mb-6">Projects</h2>
-
-    <div class="grid md:grid-cols-2 gap-6">
-
-        <div class="border border-slate-800 rounded-lg p-5 hover:border-primary transition">
-            <h3 class="font-semibold text-white">Arduino Sensor Logger</h3>
-            <p class="text-slate-400 mt-2 text-sm">
-                Simple Arduino project to log sensor data and export it.
-            </p>
-        </div>
-
-        <div class="border border-slate-800 rounded-lg p-5 hover:border-primary transition">
-            <h3 class="font-semibold text-white">Android Face Attendance</h3>
-            <p class="text-slate-400 mt-2 text-sm">
-                Offline face recognition using TensorFlow Lite.
-            </p>
-        </div>
-
-    </div>
-</section> -->
+</div>
