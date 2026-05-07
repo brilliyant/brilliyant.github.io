@@ -2,23 +2,35 @@
     <div class="flex items-center justify-between">
         <a href="#home" class="text-3xl font-extrabold tracking-[0.08em] text-ink">THOMI</a>
 
-        <nav class="hidden items-center gap-8 text-sm font-medium text-ink md:flex">
-            <a href="#home" class="transition hover:opacity-70">Home</a>
-            <a href="#about" class="transition hover:opacity-70">About</a>
-            <a href="#services" class="transition hover:opacity-70">Services</a>
-            <a href="#projects" class="rounded-xl border border-ink px-6 py-2 font-semibold">My Works</a>
-        </nav>
+        <div class="flex items-center gap-3 md:gap-6">
+            <nav class="hidden items-center gap-8 text-sm font-medium text-ink md:flex">
+                <a href="#home" class="transition hover:opacity-70">Home</a>
+                <a href="#about" class="transition hover:opacity-70">About</a>
+                <a href="#services" class="transition hover:opacity-70">Services</a>
+                <a href="#projects" class="rounded-xl border border-ink px-6 py-2 font-semibold">My Works</a>
+            </nav>
 
-        <button
-            id="mobile-menu-toggle"
-            class="grid h-10 w-10 place-items-center rounded-lg border border-ink text-base md:hidden"
-            type="button"
-            aria-label="Open menu">
-            <i class="fa-solid fa-bars"></i>
-        </button>
+            <button
+                id="theme-toggle"
+                class="inline-flex h-10 items-center gap-2 rounded-lg border border-ink px-3 text-sm font-semibold text-ink transition hover:opacity-70"
+                type="button"
+                aria-label="Switch to dark mode"
+                aria-pressed="false">
+                <i id="theme-toggle-icon" class="fa-solid fa-moon"></i>
+                <span id="theme-toggle-text" class="hidden sm:inline">Dark</span>
+            </button>
+
+            <button
+                id="mobile-menu-toggle"
+                class="grid h-10 w-10 place-items-center rounded-lg border border-ink text-base md:hidden"
+                type="button"
+                aria-label="Open menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
     </div>
 
-    <nav id="mobile-menu" class="mt-5 hidden rounded-2xl border border-line bg-white p-5 md:hidden">
+    <nav id="mobile-menu" class="mt-5 hidden rounded-2xl border border-line bg-surface p-5 md:hidden">
         <div class="flex flex-col gap-4 text-base font-medium text-ink">
             <a href="#home" class="transition hover:opacity-70">Home</a>
             <a href="#about" class="transition hover:opacity-70">About</a>

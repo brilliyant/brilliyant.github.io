@@ -13,6 +13,32 @@
 
     <title>Thomi Febriyan Portfolio | Flutter Developer</title>
 
+    <script>
+        ; (() => {
+            const storageKey = "portfolio-theme"
+            let storedTheme = null
+
+            try {
+                storedTheme = localStorage.getItem(storageKey)
+            } catch (_) {
+                storedTheme = null
+            }
+
+            const prefersDark =
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+
+            const initialTheme =
+                storedTheme === "dark" || storedTheme === "light"
+                    ? storedTheme
+                    : prefersDark
+                        ? "dark"
+                        : "light"
+
+            document.documentElement.dataset.theme = initialTheme
+        })()
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,11 +54,12 @@
             theme: {
                 extend: {
                     colors: {
-                        paper: "#eeeff0",
-                        ink: "#111b37",
-                        midnight: "#000f37",
-                        muted: "#667790",
-                        line: "#b6bcc7",
+                        paper: "rgb(var(--paper) / <alpha-value>)",
+                        ink: "rgb(var(--ink) / <alpha-value>)",
+                        midnight: "rgb(var(--midnight) / <alpha-value>)",
+                        muted: "rgb(var(--muted) / <alpha-value>)",
+                        line: "rgb(var(--line) / <alpha-value>)",
+                        surface: "rgb(var(--surface) / <alpha-value>)",
                     },
                     fontFamily: {
                         display: ["Poppins", "sans-serif"],
@@ -46,6 +73,26 @@
     </script>
 
     <style>
+        :root {
+            --paper: 238 239 240;
+            --ink: 17 27 55;
+            --midnight: 0 15 55;
+            --muted: 102 119 144;
+            --line: 182 188 199;
+            --surface: 255 255 255;
+            color-scheme: light;
+        }
+
+        :root[data-theme="dark"] {
+            --paper: 10 18 39;
+            --ink: 230 237 255;
+            --midnight: 4 10 28;
+            --muted: 154 170 200;
+            --line: 67 82 111;
+            --surface: 20 31 56;
+            color-scheme: dark;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -74,7 +121,7 @@
 </head>
 
 <body class="bg-paper font-display text-ink">
-    <header id="header"></header>
+    <header id="header" class="sticky top-0 z-50 border-b border-line/60 bg-paper/90 backdrop-blur-md"></header>
 
     <main>
         <section id="hero"></section>
@@ -86,6 +133,85 @@
     <footer id="footer"></footer>
 
     <script>
+        const themeStorageKey = "portfolio-theme"
+        const themePreferenceQuery = window.matchMedia
+            ? window.matchMedia("(prefers-color-scheme: dark)")
+            : null
+
+        let activeTheme =
+            document.documentElement.dataset.theme === "dark" ? "dark" : "light"
+
+        function readStoredTheme() {
+            try {
+                const stored = localStorage.getItem(themeStorageKey)
+                return stored === "dark" || stored === "light" ? stored : null
+            } catch (_) {
+                return null
+            }
+        }
+
+        function saveTheme(theme) {
+            try {
+                localStorage.setItem(themeStorageKey, theme)
+            } catch (_) {
+                // Skip persistence when storage is unavailable.
+            }
+        }
+
+        function updateThemeToggleUi() {
+            const toggleButton = document.getElementById("theme-toggle")
+            if (!toggleButton) return
+
+            const icon = document.getElementById("theme-toggle-icon")
+            const label = document.getElementById("theme-toggle-text")
+            const isDark = activeTheme === "dark"
+
+            toggleButton.setAttribute(
+                "aria-label",
+                isDark ? "Switch to light mode" : "Switch to dark mode",
+            )
+            toggleButton.setAttribute("aria-pressed", String(isDark))
+
+            if (icon) {
+                icon.className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon"
+            }
+
+            if (label) {
+                label.textContent = isDark ? "Light" : "Dark"
+            }
+        }
+
+        function applyTheme(theme) {
+            activeTheme = theme === "dark" ? "dark" : "light"
+            document.documentElement.dataset.theme = activeTheme
+            updateThemeToggleUi()
+        }
+
+        function initThemeToggle() {
+            const toggleButton = document.getElementById("theme-toggle")
+            if (!toggleButton) return
+
+            updateThemeToggleUi()
+
+            toggleButton.addEventListener("click", () => {
+                const nextTheme = activeTheme === "dark" ? "light" : "dark"
+                applyTheme(nextTheme)
+                saveTheme(nextTheme)
+            })
+
+            if (!themePreferenceQuery || readStoredTheme()) return
+
+            const syncWithSystemPreference = (event) => {
+                applyTheme(event.matches ? "dark" : "light")
+            }
+
+            if (typeof themePreferenceQuery.addEventListener === "function") {
+                themePreferenceQuery.addEventListener("change", syncWithSystemPreference)
+            } else if (typeof themePreferenceQuery.addListener === "function") {
+                themePreferenceQuery.addListener(syncWithSystemPreference)
+            }
+        }
+
         const sectionFiles = {
             header: "sections/header.html",
             hero: "sections/hero.html",
@@ -250,7 +376,7 @@
                     button.className = [
                         "rounded-full px-5 py-2 text-sm font-semibold transition md:text-base",
                         isActive
-                            ? "bg-white text-ink"
+                            ? "bg-surface text-ink"
                             : "text-white/45 hover:text-white",
                     ].join(" ")
                 })
@@ -292,6 +418,7 @@
             })
 
             await Promise.all(loadTasks)
+            initThemeToggle()
             initMobileNav()
             initProjects()
             animateCounters()
@@ -304,4 +431,3 @@
 </body>
 
 </html>
-
