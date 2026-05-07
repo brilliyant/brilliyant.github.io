@@ -99,6 +99,7 @@
             {
                 title: "Automatic Curtains",
                 category: "arduino",
+                skills: ["arduino", "embedded systems"],
                 year: "2025",
                 size: "regular",
                 image:
@@ -107,6 +108,7 @@
             {
                 title: "PID Line Tracer",
                 category: "arduino",
+                skills: ["arduino", "embedded systems"],
                 year: "2025",
                 size: "regular",
                 image:
@@ -115,6 +117,7 @@
             {
                 title: "Smart Greenhouse",
                 category: "web-app",
+                skills: ["web app", "iot", "arduino"],
                 year: "2025",
                 size: "regular",
                 image:
@@ -123,6 +126,7 @@
             {
                 title: "Attendance Mobile App",
                 category: "mobile",
+                skills: ["mobile", "flutter", "android"],
                 year: "2024",
                 size: "regular",
                 image:
@@ -131,6 +135,7 @@
             {
                 title: "Automatic Curtains",
                 category: "arduino",
+                skills: ["arduino", "embedded systems"],
                 year: "2025",
                 size: "wide",
                 image:
@@ -209,6 +214,26 @@
             return article
         }
 
+        function normalizeFilterKey(value) {
+            return String(value ?? "")
+                .trim()
+                .toLowerCase()
+                .replace(/[\s_]+/g, "-")
+        }
+
+        function getProjectFilterKeys(project) {
+            const keys = []
+            if (project?.category) keys.push(normalizeFilterKey(project.category))
+
+            if (Array.isArray(project?.skills)) {
+                project.skills.forEach((skill) => {
+                    keys.push(normalizeFilterKey(skill))
+                })
+            }
+
+            return [...new Set(keys)]
+        }
+
         function initProjects() {
             const grid = document.getElementById("projects-grid")
             const filters = document.getElementById("project-filters")
@@ -218,7 +243,10 @@
 
             function setActiveButton() {
                 filters.querySelectorAll("button").forEach((button) => {
-                    const isActive = button.dataset.filter === currentFilter
+                    const buttonFilter = normalizeFilterKey(
+                        button.dataset.filter || button.textContent,
+                    )
+                    const isActive = buttonFilter === currentFilter
                     button.className = [
                         "rounded-full px-5 py-2 text-sm font-semibold transition md:text-base",
                         isActive
@@ -232,7 +260,9 @@
                 const visibleItems =
                     currentFilter === "all"
                         ? projectItems
-                        : projectItems.filter((item) => item.category === currentFilter)
+                        : projectItems.filter((item) =>
+                            getProjectFilterKeys(item).includes(currentFilter),
+                        )
 
                 grid.innerHTML = ""
                 visibleItems.forEach((item) => {
@@ -243,7 +273,8 @@
             filters.addEventListener("click", (event) => {
                 const button = event.target.closest("button")
                 if (!button) return
-                currentFilter = button.dataset.filter
+                const nextFilter = button.dataset.filter || button.textContent
+                currentFilter = normalizeFilterKey(nextFilter)
                 setActiveButton()
                 render()
             })
