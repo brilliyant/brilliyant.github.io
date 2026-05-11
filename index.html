@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -42,12 +42,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
     <script>
         tailwind.config = {
@@ -347,6 +346,12 @@
                 .replace(/[\s_]+/g, "-")
         }
 
+        function toTitleCaseFromKey(value) {
+            return String(value ?? "")
+                .replace(/[-_]+/g, " ")
+                .replace(/\b\w/g, (char) => char.toUpperCase())
+        }
+
         function getProjectFilterKeys(project) {
             const keys = []
             if (project?.category) keys.push(normalizeFilterKey(project.category))
@@ -366,6 +371,41 @@
             if (!grid || !filters) return
 
             let currentFilter = "all"
+
+            function buildFilterButtons() {
+                const allKeys = new Set()
+                projectItems.forEach((item) => {
+                    getProjectFilterKeys(item).forEach((key) => allKeys.add(key))
+                })
+
+                const categoryKeys = []
+                const skillKeys = []
+                allKeys.forEach((key) => {
+                    const isCategory = projectItems.some(
+                        (item) => normalizeFilterKey(item.category) === key,
+                    )
+                    if (isCategory) {
+                        categoryKeys.push(key)
+                    } else {
+                        skillKeys.push(key)
+                    }
+                })
+
+                const orderedKeys = [...categoryKeys.sort(), ...skillKeys.sort()]
+                const buttonDefs = [
+                    { key: "all", label: "All Works" },
+                    ...orderedKeys.map((key) => ({ key, label: toTitleCaseFromKey(key) })),
+                ]
+
+                filters.innerHTML = ""
+                buttonDefs.forEach(({ key, label }) => {
+                    const button = document.createElement("button")
+                    button.type = "button"
+                    button.dataset.filter = key
+                    button.textContent = label
+                    filters.appendChild(button)
+                })
+            }
 
             function setActiveButton() {
                 filters.querySelectorAll("button").forEach((button) => {
@@ -405,6 +445,7 @@
                 render()
             })
 
+            buildFilterButtons()
             setActiveButton()
             render()
         }
