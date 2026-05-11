@@ -223,35 +223,36 @@
         const projectItems = [
             {
                 title: "Automatic Curtains",
-                category: "arduino",
-                skills: ["arduino", "embedded systems"],
-                year: "2025",
+                type: "embedded",
+                technologies: ["Arduino", "IoT", "Sensors"],
+                year: "2021",
                 size: "regular",
                 image:
                     "https://lh3.googleusercontent.com/aida-public/AB6AXuAnT3axmNDeXB0veaUQneAj9aZ7La9t4mXERLCBNrSoqgtzQpaO9pR3tzHytg-i-DpEfGLiUk2qCh5kn_kF1J5_KD8_FSLcwyf_73DIL1afyw4j-Qx94_QM_nmkiTXxb_mAWa86hNfR9x5e463gcoGDtm17gBYgiVMRAs3Q7lCRCVZttNv2TzWSfkJELdfknjIspjFrXSdDvwAoacqSb3IplWw4-wDWC9uiaIaSbpqmyX3ddK_zolqZmu7Ht2VghdtBalsZX4wW_A",
             },
             {
                 title: "PID Line Tracer",
-                category: "arduino",
-                skills: ["arduino", "embedded systems"],
+                type: "embedded",
+                technologies: ["Arduino", "PID Control", "Mathlab"],
                 year: "2025",
                 size: "regular",
                 image:
                     "https://lh3.googleusercontent.com/aida-public/AB6AXuBaXmcXqZUxTDmfZYD9MHjl_AfuBlSR7w5LUgqAEigI9aM4rgYyWXgfgo3bHos2ccjnTeakE2ymi4O951cokIhqnqBXKS8yAeO08ixePcvxw5urZ6_A4knE9gSM6X8wrAzObBOG7cqbfGWIU4qFn-1EhpvMKXwjj5qQnNm14OEklfmgy98uZqSex13DUC1XBBaOL-hPB1bGjZgjxShyja1v0GKwcf6OH65g-q3TjCvhI9AMEvd2_U8HQVxK818xiXECvye796ED4Q",
             },
             {
-                title: "Smart Greenhouse",
-                category: "web-app",
-                skills: ["web app", "iot", "arduino"],
+                title: "Webino - Seminar and Ticketing",
+                type: "mobile",
+                technologies: ["Flutter", "Arduino", "IoT Sensors"],
+                // technologies: ["Web Dashboard", "Arduino", "IoT Sensors"],
                 year: "2025",
                 size: "regular",
                 image:
-                    "https://lh3.googleusercontent.com/aida-public/AB6AXuCeQidddfO5702V_L9lwNsUypNWYVcfIK4P0jD4SMLm6dj0HtlamAMHaR8M0TFQmrKy_L-oKrsTOKG7ZKPP5AKl979kj9IItKIxYIA9TxJxkEnnasSQTiP3jENy9gm0yQha2oM9FBwfYsLM62Bthb0dZLw9x8aSfTuUw-z2OciyW43az6q0GYj4vcOJe05U2bfyMHizzCf8iPdQkBQqNphxkSTtpDbeogC1QNqksuW9LJHih0gaZ_iKw-DcRvkuufF0R0fiA60XRw",
+                    "https://cdn.dribbble.com/userupload/15576148/file/original-9d5bf2f635a6c15ee10c8f5ee0639fbe.jpg?resize=1024x728&vertical=center",
             },
             {
                 title: "Attendance Mobile App",
-                category: "mobile",
-                skills: ["mobile", "flutter", "android"],
+                type: "mobile",
+                technologies: ["Flutter", "Android", "TensorFlow Lite"],
                 year: "2024",
                 size: "regular",
                 image:
@@ -259,8 +260,8 @@
             },
             {
                 title: "Automatic Curtains",
-                category: "arduino",
-                skills: ["arduino", "embedded systems"],
+                type: "embedded",
+                technologies: ["Arduino", "Embedded C++", "Automation"],
                 year: "2025",
                 size: "wide",
                 image:
@@ -320,7 +321,14 @@
             ].join(" ")
 
             const ratioClass = isWide ? "aspect-[2.4/1]" : "aspect-[4/3]"
-            const categoryLabel = project.category.replace("-", " ")
+            const technologyChips = Array.isArray(project.technologies)
+                ? project.technologies
+                    .map(
+                        (tech) =>
+                            `<span class="rounded-full border border-white/30 bg-white/10 px-2.5 py-1 text-[11px] font-medium text-white/90 md:text-xs">${tech}</span>`,
+                    )
+                    .join("")
+                : ""
 
             article.innerHTML = `
                 <div class="${ratioClass} w-full overflow-hidden">
@@ -331,8 +339,11 @@
                     />
                 </div>
                 <div class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-5 md:p-6">
-                    <p class="text-sm text-white/80">${categoryLabel} | ${project.year}</p>
+                    <p class="text-sm text-white/80">${project.year}</p>
                     <h3 class="mt-2 text-xl font-medium text-white md:text-3xl">${project.title}</h3>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                        ${technologyChips}
+                    </div>
                 </div>
             `
 
@@ -346,24 +357,13 @@
                 .replace(/[\s_]+/g, "-")
         }
 
-        function toTitleCaseFromKey(value) {
-            return String(value ?? "")
-                .replace(/[-_]+/g, " ")
-                .replace(/\b\w/g, (char) => char.toUpperCase())
-        }
-
-        function getProjectFilterKeys(project) {
-            const keys = []
-            if (project?.category) keys.push(normalizeFilterKey(project.category))
-
-            if (Array.isArray(project?.skills)) {
-                project.skills.forEach((skill) => {
-                    keys.push(normalizeFilterKey(skill))
-                })
-            }
-
-            return [...new Set(keys)]
-        }
+        const projectFilters = [
+            { key: "all", label: "All", type: null },
+            { key: "mobile-apps", label: "Mobile Apps", type: "mobile" },
+            { key: "embedded", label: "Embedded", type: "embedded" },
+            { key: "ai-systems", label: "AI Systems", type: "ai" },
+            { key: "iot", label: "IoT", type: "iot" },
+        ]
 
         function initProjects() {
             const grid = document.getElementById("projects-grid")
@@ -373,32 +373,8 @@
             let currentFilter = "all"
 
             function buildFilterButtons() {
-                const allKeys = new Set()
-                projectItems.forEach((item) => {
-                    getProjectFilterKeys(item).forEach((key) => allKeys.add(key))
-                })
-
-                const categoryKeys = []
-                const skillKeys = []
-                allKeys.forEach((key) => {
-                    const isCategory = projectItems.some(
-                        (item) => normalizeFilterKey(item.category) === key,
-                    )
-                    if (isCategory) {
-                        categoryKeys.push(key)
-                    } else {
-                        skillKeys.push(key)
-                    }
-                })
-
-                const orderedKeys = [...categoryKeys.sort(), ...skillKeys.sort()]
-                const buttonDefs = [
-                    { key: "all", label: "All Works" },
-                    ...orderedKeys.map((key) => ({ key, label: toTitleCaseFromKey(key) })),
-                ]
-
                 filters.innerHTML = ""
-                buttonDefs.forEach(({ key, label }) => {
+                projectFilters.forEach(({ key, label }) => {
                     const button = document.createElement("button")
                     button.type = "button"
                     button.dataset.filter = key
@@ -423,11 +399,16 @@
             }
 
             function render() {
+                const activeFilterDef =
+                    projectFilters.find((item) => item.key === currentFilter) ||
+                    projectFilters[0]
                 const visibleItems =
-                    currentFilter === "all"
+                    activeFilterDef.type === null
                         ? projectItems
-                        : projectItems.filter((item) =>
-                            getProjectFilterKeys(item).includes(currentFilter),
+                        : projectItems.filter(
+                            (item) =>
+                                normalizeFilterKey(item.type) ===
+                                normalizeFilterKey(activeFilterDef.type),
                         )
 
                 grid.innerHTML = ""
