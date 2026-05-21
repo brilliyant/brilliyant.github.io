@@ -223,6 +223,15 @@
 
         const projectItems = [
             {
+                title: "Webino",
+                type: "mobile",
+                technologies: ["Flutter", "Mobile Apps", "Event System"],
+                year: "2021",
+                size: "wide",
+                image:
+                    "https://cdn.dribbble.com/userupload/15576148/file/original-9d5bf2f635a6c15ee10c8f5ee0639fbe.jpg?resize=1024x728&vertical=center",
+            },
+            {
                 title: "Automatic Curtain",
                 type: "embedded",
                 technologies: ["Arduino", "IoT", "Sensors", "Automation"],
@@ -234,39 +243,30 @@
                 title: "PID Line Tracer",
                 type: "embedded",
                 technologies: ["Arduino", "PID Control", "Robotics", "MATLAB"],
-                year: "2022",
+                year: "2021",
                 size: "regular",
-                image:
-                    "https://lh3.googleusercontent.com/aida-public/AB6AXuBaXmcXqZUxTDmfZYD9MHjl_AfuBlSR7w5LUgqAEigI9aM4rgYyWXgfgo3bHos2ccjnTeakE2ymi4O951cokIhqnqBXKS8yAeO08ixePcvxw5urZ6_A4knE9gSM6X8wrAzObBOG7cqbfGWIU4qFn-1EhpvMKXwjj5qQnNm14OEklfmgy98uZqSex13DUC1XBBaOL-hPB1bGjZgjxShyja1v0GKwcf6OH65g-q3TjCvhI9AMEvd2_U8HQVxK818xiXECvye796ED4Q",
-            },
-            {
-                title: "Webino",
-                type: "mobile",
-                technologies: ["Flutter", "Mobile Apps", "Event System"],
-                year: "2022",
-                size: "wide",
-                image:
-                    "https://cdn.dribbble.com/userupload/15576148/file/original-9d5bf2f635a6c15ee10c8f5ee0639fbe.jpg?resize=1024x728&vertical=center",
+                image: null,
+                //"https://lh3.googleusercontent.com/aida-public/AB6AXuBaXmcXqZUxTDmfZYD9MHjl_AfuBlSR7w5LUgqAEigI9aM4rgYyWXgfgo3bHos2ccjnTeakE2ymi4O951cokIhqnqBXKS8yAeO08ixePcvxw5urZ6_A4knE9gSM6X8wrAzObBOG7cqbfGWIU4qFn-1EhpvMKXwjj5qQnNm14OEklfmgy98uZqSex13DUC1XBBaOL-hPB1bGjZgjxShyja1v0GKwcf6OH65g-q3TjCvhI9AMEvd2_U8HQVxK818xiXECvye796ED4Q",
             },
             {
                 title: "Warehouse Management System",
                 type: "warehouse",
                 technologies: ["Flutter Web", "Inventory", "Dashboard"],
-                year: "2023",
-                size: "regular",
-                image:
-                    "https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1200&auto=format&fit=crop",
+                year: "2022",
+                size: "wide",
+                image: "assets/warehouse.png",
+                // "https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1200&auto=format&fit=crop",
             },
 
-            {
-                title: "Jogokios Cashier Apps",
-                type: "web",
-                technologies: ["Django", "Flutter", "POS System", "Web App"],
-                year: "2023",
-                size: "regular",
-                image:
-                    "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop",
-            },
+            // {
+            //     title: "Jogokios Cashier Apps",
+            //     type: "web",
+            //     technologies: ["Django", "Flutter", "POS System", "Web App"],
+            //     year: "2023",
+            //     size: "regular",
+            //     image: null
+            //     // "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop",
+            // },
 
             {
                 title: "Traceability System",
@@ -274,28 +274,8 @@
                 technologies: ["Kotlin", "Android", "Enterprise Apps"],
                 year: "2024",
                 size: "regular",
-                image:
-                    "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
-            },
-
-            {
-                title: "FaceScan",
-                type: "ai",
-                technologies: ["Java", "Android", "Face Recognition", "TensorFlow Lite"],
-                year: "2024",
-                size: "regular",
-                image:
-                    "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?q=80&w=1200&auto=format&fit=crop",
-            },
-
-            {
-                title: "Hizy - Housing Warehouse IoT",
-                type: "warehouse",
-                technologies: ["Kotlin", "IoT", "Warehouse", "Android"],
-                year: "2025",
-                size: "wide",
-                image:
-                    "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop",
+                image: null
+                // "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
             },
 
             {
@@ -307,56 +287,28 @@
                 image:
                     "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1200&auto=format&fit=crop",
             },
+
+            // {
+            //     title: "FaceScan",
+            //     type: "ai",
+            //     technologies: ["Java", "Android", "Face Recognition", "TensorFlow Lite"],
+            //     year: "2024",
+            //     size: "regular",
+            //     image:
+            //         "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?q=80&w=1200&auto=format&fit=crop",
+            // },
+
+            {
+                title: "Hizy - Housing Warehouse IoT",
+                type: "warehouse",
+                technologies: ["Kotlin", "IoT", "Warehouse", "Android", "ai"],
+                year: "2025",
+                size: "wide",
+                image: "assets/Hizy.png",
+            },
+
         ];
 
-        // const projectItems = [
-        //     {
-        //         title: "Automatic Curtains",
-        //         type: "embedded",
-        //         technologies: ["Arduino", "IoT", "Sensors"],
-        //         year: "2021",
-        //         size: "regular",
-        //         image:
-        //             "https://lh3.googleusercontent.com/aida-public/AB6AXuAnT3axmNDeXB0veaUQneAj9aZ7La9t4mXERLCBNrSoqgtzQpaO9pR3tzHytg-i-DpEfGLiUk2qCh5kn_kF1J5_KD8_FSLcwyf_73DIL1afyw4j-Qx94_QM_nmkiTXxb_mAWa86hNfR9x5e463gcoGDtm17gBYgiVMRAs3Q7lCRCVZttNv2TzWSfkJELdfknjIspjFrXSdDvwAoacqSb3IplWw4-wDWC9uiaIaSbpqmyX3ddK_zolqZmu7Ht2VghdtBalsZX4wW_A",
-        //     },
-        //     {
-        //         title: "PID Line Tracer",
-        //         type: "embedded",
-        //         technologies: ["Arduino", "PID Control", "Mathlab"],
-        //         year: "2025",
-        //         size: "regular",
-        //         image:
-        //             "https://lh3.googleusercontent.com/aida-public/AB6AXuBaXmcXqZUxTDmfZYD9MHjl_AfuBlSR7w5LUgqAEigI9aM4rgYyWXgfgo3bHos2ccjnTeakE2ymi4O951cokIhqnqBXKS8yAeO08ixePcvxw5urZ6_A4knE9gSM6X8wrAzObBOG7cqbfGWIU4qFn-1EhpvMKXwjj5qQnNm14OEklfmgy98uZqSex13DUC1XBBaOL-hPB1bGjZgjxShyja1v0GKwcf6OH65g-q3TjCvhI9AMEvd2_U8HQVxK818xiXECvye796ED4Q",
-        //     },
-        //     {
-        //         title: "Webino - Seminar and Ticketing",
-        //         type: "mobile",
-        //         technologies: ["Flutter", "Arduino", "IoT Sensors"],
-        //         // technologies: ["Web Dashboard", "Arduino", "IoT Sensors"],
-        //         year: "2025",
-        //         size: "regular",
-        //         image:
-        //             "https://cdn.dribbble.com/userupload/15576148/file/original-9d5bf2f635a6c15ee10c8f5ee0639fbe.jpg?resize=1024x728&vertical=center",
-        //     },
-        //     {
-        //         title: "Attendance Mobile App",
-        //         type: "mobile",
-        //         technologies: ["Flutter", "Android", "TensorFlow Lite"],
-        //         year: "2024",
-        //         size: "regular",
-        //         image:
-        //             "https://cdn.dribbble.com/userupload/15576148/file/original-9d5bf2f635a6c15ee10c8f5ee0639fbe.jpg?resize=1024x728&vertical=center",
-        //     },
-        //     {
-        //         title: "Automatic Curtains",
-        //         type: "embedded",
-        //         technologies: ["Arduino", "Embedded C++", "Automation"],
-        //         year: "2025",
-        //         size: "wide",
-        //         image:
-        //             "https://lh3.googleusercontent.com/aida-public/AB6AXuBaXmcXqZUxTDmfZYD9MHjl_AfuBlSR7w5LUgqAEigI9aM4rgYyWXgfgo3bHos2ccjnTeakE2ymi4O951cokIhqnqBXKS8yAeO08ixePcvxw5urZ6_A4knE9gSM6X8wrAzObBOG7cqbfGWIU4qFn-1EhpvMKXwjj5qQnNm14OEklfmgy98uZqSex13DUC1XBBaOL-hPB1bGjZgjxShyja1v0GKwcf6OH65g-q3TjCvhI9AMEvd2_U8HQVxK818xiXECvye796ED4Q",
-        //     },
-        // ]
 
         function initMobileNav() {
             const toggleButton = document.getElementById("mobile-menu-toggle")
@@ -458,14 +410,6 @@
             { key: "embedded", label: "Embedded & IoT", type: "embedded" },
             { key: "ai", label: "AI & Vision", type: "ai" },
         ];
-
-        // const projectFilters = [
-        //     { key: "all", label: "All", type: null },
-        //     { key: "mobile-apps", label: "Mobile Apps", type: "mobile" },
-        //     { key: "embedded", label: "Embedded", type: "embedded" },
-        //     { key: "ai-systems", label: "AI Systems", type: "ai" },
-        //     { key: "iot", label: "IoT", type: "iot" },
-        // ]
 
         function initProjects() {
             const grid = document.getElementById("projects-grid")
